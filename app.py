@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Jan 26 18:51:10 2020
-
-@author: Admin
-"""
-
 from flask import Flask,render_template,url_for,request
 import pandas as pd
 

@@ -17,7 +17,7 @@ def predict():
     int_features = [float(x) for x in request.form.values()]
     final_features = [np.array(int_features)]
     prediction = model.predict(final_features)
-    print(prediction[0])
+   
 
     #output = round(prediction[0], 2)
     return render_template('home.html', prediction_text="AQI for MUMBAI {}".format(prediction[0]))

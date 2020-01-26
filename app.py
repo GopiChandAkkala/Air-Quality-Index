@@ -26,7 +26,7 @@ def predict():
     df = pd.read_csv('aqi.csv')
     pred = load_model.predict(df.iloc[:,:-1].values)
     pred = pred.toliat()
-    return render_template('result.html',pred)
+    return render_template('result.html',prediction = pred)
 
 
 if __name__ == '__main__':

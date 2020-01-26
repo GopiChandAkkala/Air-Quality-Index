@@ -1,4 +1,4 @@
-from flask import Flask,render_template,url_for,request
+from flask import Flask, request, jsonify, render_template, url_for
 import pandas as pd
 
 import pickle

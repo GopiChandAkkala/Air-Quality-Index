@@ -12,15 +12,28 @@ def home():
     
     return render_template('home.html')
 
-@app.route('/predict',methods=['POST'])
-
+@app.route('/predict',methods = ['POST'])
 def predict():
-    
-    df = pd.read_csv('aqi.csv')
-    pred = load_model.predict(df.iloc[:,:-1].values)
-    pred = pred.toliat()
-    return render_template('result.html',prediction = pred)
+    int_features = [float(x) for x in request.form.values()]
+    final_features = [np.array(int_features)]
+    prediction = model.predict(final_features)
+    print(prediction[0])
+
+    #output = round(prediction[0], 2)
+    return render_template('home.html', prediction_text="AQI for MUMBAI {}".format(prediction[0]))
+
+@app.route('/predict_api',methods=['POST'])
+def predict_api():
+    '''
+    For direct API calls trought request
+    '''
+    data = request.get_json(force=True)
+    prediction = model.predict([np.array(list(data.values()))])
+
+    output = prediction[0]
+    return jsonify(output)
+
 
 
 if __name__ == '__main__':
-	app.run(debug=True)
+    app.run(debug=True)
